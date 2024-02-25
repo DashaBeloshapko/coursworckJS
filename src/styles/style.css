@@ -61,24 +61,47 @@
 
 .cardWrap {
     width: 30%;
-    height: 100%;
+    min-height: 100%;
     min-height: 350px;
     border-radius: 5px;
     display: flex;
     flex-direction: column;
     justify-content: space-between;
+    background-image: url(../images/1675491941_top-fon-com-p-fon-derevyannii-dlya-prezentatsii-168-2.png);
+    background-size: 70%;
+    background-repeat: repeat;
+    position: relative;
+    z-index: 2;
 }
 
-.todocolor {
-    background-color: rgb(164, 228, 164);
+.cardWrapTodoShadow {
+    position: absolute;
+    z-index: 1;
+    background-color: green;
+    width: 100%;
+    height: 100%;
+    border-radius: 5px;
+    opacity: 0.2;
 }
 
-.progcolor {
-    background-color: rgb(214, 208, 208)
+.cardWrapProgShadow {
+    position: absolute;
+    z-index: 1;
+    background-color: gray;
+    width: 100%;
+    height: 100%;
+    border-radius: 5px;
+    opacity: 0.2;
 }
 
-.donecolor {
-    background-color: rgb(187, 187, 207);
+.cardWrapDoneShadow {
+    position: absolute;
+    z-index: 1;
+    background-color: rgb(95, 95, 214);
+    width: 100%;
+    height: 100%;
+    border-radius: 5px;
+    opacity: 0.2;
 }
 
 .wrapCardTitle {
@@ -104,7 +127,7 @@
     width: 100%;
     height: 50px;
     border-radius: 5px;
-    opacity: 0.3;
+    opacity: 0.4;
 }
 
 .wrapProgTitleShadow {
@@ -114,7 +137,7 @@
     width: 100%;
     height: 50px;
     border-radius: 5px;
-    opacity: 0.3;
+    opacity: 0.4;
 }
 
 .wrapDoneTitleShadow {
@@ -124,7 +147,7 @@
     width: 100%;
     height: 50px;
     border-radius: 5px;
-    opacity: 0.3;
+    opacity: 0.4;
 }
 
 .cardTitle {
@@ -174,7 +197,9 @@
 }
 
 .wrapButtonProg {
-    display: none;
+    width: 100%;
+    height: 50px;
+    background-image: none;
 }
 
 .wrapTodoButShadow {
@@ -183,7 +208,7 @@
     height: 50px;
     position: absolute;
     z-index: 1;
-    opacity: 0.3;
+    opacity: 0.4;
 }
 
 .wrapDoneButShadow {
@@ -192,7 +217,7 @@
     height: 50px;
     position: absolute;
     z-index: 1;
-    opacity: 0.3;
+    opacity: 0.4;
 }
 
 .wrapBut-Todo {
@@ -212,12 +237,13 @@
 .cardWish {
     display: none;
     width: 60%;
+    max-width: 700px;
     height: 350px;
-    background-color: green;
+    background-image: url(../images/1614403197_51-p-temnaya-shkola-fon-60.jpg);
     border-radius: 10px;
     justify-content: center;
     align-items: center;
-    position: absolute;
+    position: fixed;
 }
 
 .openCardWish {
@@ -236,18 +262,36 @@
 .cardWishTitle {
     width: 40%;
     height: 30px;
-    border-radius: 5px;
-    border: 1px solid black;
-    font-weight: 400;
+    border-radius: 10px;
+    border: 2px solid white;
+    color: white;
+    background-color: transparent;
+    font-weight: 800;
     text-align: center;
+    font-family: 'Caveat Bold';
+    font-size: 20px;
+}
+
+.cardWishTitle:hover {
+    box-shadow: 10px 5px 5px white;
 }
 
 .cardWishDescript {
     width: 97%;
     height: 130px;
-    border-radius: 5px;
-    border: 1px solid black;
+    border-radius: 10px;
+    border: 2px solid white;
+    color: white;
+    background-color: transparent;
+    font-weight: 800;
     text-align: center;
+    font-family: 'Caveat Bold';
+    font-size: 20px;
+    resize: none;
+}
+
+.cardWishDescript:hover {
+    box-shadow: 10px 5px 5px white;
 }
 
 .cardWishFooter {
@@ -261,20 +305,39 @@
 .wishFooterSelect {
     width: 30%;
     height: 100%;
-    background-color: white;
-    border-radius: 5px;
-    border: 1px solid black;
+    background-color: transparent;
+    border-radius: 10px;
+    border: 2px solid white;
     display: flex;
     justify-content: center;
     align-items: center;
     margin-right: 70px;
+    color: white;
+    font-family: 'Caveat Bold';
+    font-size: 20px;
+}
+
+.wishFooterSelect:hover {
+    box-shadow: 10px 5px 5px white;
+}
+
+.option {
+    background-color: rgba(0, 0, 0, 0.877);
 }
 
 .wishFooterBut {
     width: 20%;
     height: 100%;
-    border-radius: 5px;
-    border: 1px solid black;
+    border-radius: 45px;
+    border: 2px solid white;
+    color: white;
+    font-family: 'Caveat Bold';
+    font-size: 20px;
+    background-color: transparent;
+}
+
+.wishFooterBut:hover {
+    box-shadow: 10px 5px 5px white;
 }
 
 .cardDesk {
@@ -283,9 +346,8 @@
     height: 80%;
     display: flex;
     flex-direction: column;
-    justify-content: flex-end;
+    justify-content: flex-start;
     align-items: center;
-    gap: 10px;
 }
 
 .cardWrapOnDesk {
@@ -295,18 +357,47 @@
     flex-direction: column;
     align-items: center;
     justify-content: center;
+    z-index: 2;
+    margin: 5px 0 5px 0;
 }
 
 .cardOnDeskHeader {
     display: flex;
-    flex-direction: row;
-    width: 80%;
-    justify-content: space-between;
+    flex-direction: column;
     margin-top: 10px;
+    width: 90%;
+}
+
+.cardOnDeskHeaderButWrap {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
 }
 
 .cardOnDeskHeaderTitle {
-    width: 30%;
+    width: 90%;
+    font-family: 'Caveat Medium';
+    font-size: 25px;
+    color: black;
+    font-weight: 800;
+    text-align: center;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
+
+.cardOnDeskHeaderBut {
+    font-family: 'Caveat Medium';
+    font-size: 15px;
+    color: black;
+    font-weight: 800;
+    background-color: transparent;
+    border: 1px solid black;
+    border-radius: 15px;
+}
+
+.cardOnDeskHeaderBut:hover {
+    box-shadow: 3px 5px 5px;
 }
 
 .cardOnDeskMain {
@@ -320,12 +411,34 @@
 
 .cardOnDeskMainDescr {
     width: 80%;
+    height: 80px;
+    font-family: 'Caveat Medium';
+    font-size: 20px;
+    color: black;
+    font-weight: 400;
+    overflow: hidden;
+    -webkit-line-clamp: 3;
+    display: -webkit-box;
+    -webkit-box-orient: vertical;
+}
+
+.cardOnDeskMainDescr:hover {
+    text-decoration: overline;
 }
 
 .cardOnDeskMainBut {
-    width: 20px;
+    width: 30px;
     height: 40px;
     text-align: center;
+    font-weight: 400;
+    font-size: 20px;
+    border: 1px solid black;
+    border-radius: 15px;
+    background-color: transparent;
+}
+
+.cardOnDeskMainBut:hover {
+    box-shadow: 3px 5px 5px;
 }
 
 .cardOnDeskFooter {
@@ -336,6 +449,20 @@
     width: 80%;
 }
 
+.cardOnDeskFooterUser {
+    font-family: 'Caveat Medium';
+    font-size: 20px;
+    color: black;
+    font-weight: 400;
+}
+
+.cardOnDeskFooterTime {
+    font-family: 'Caveat Medium';
+    font-size: 20px;
+    color: black;
+    font-weight: 400;
+}
+
 .cardWrapProg {
     background-color: gray;
 }
@@ -344,13 +471,12 @@
     display: none;
     width: 500px;
     height: 300px;
-    background-color: green;
     border-radius: 10px;
     flex-direction: column;
     align-items: center;
     justify-content: center;
-    gap: 30px;
-    position: absolute;
+    position: fixed;
+    background-image: url(../images/1614403197_51-p-temnaya-shkola-fon-60.jpg);
 }
 
 .winWarningTodoOpen {
@@ -358,8 +484,18 @@
 }
 
 .winWarningTodoWord {
-    font-size: 30px;
+    font-size: 40px;
     font-weight: 600;
+    color: white;
+    font-family: 'Caveat Bold';
+}
+
+.winWarningTodoText {
+    color: white;
+    font-family: 'Caveat Bold';
+    font-size: 20px;
+    width: 60%;
+    text-align: center;
 }
 
 .winWarningTodoButWrap {
@@ -373,14 +509,26 @@
 
 .winWarningTodoBut {
     width: 40%;
-    height: 25%;
-    border: 1px solid black;
-    border-radius: 5px;
+    height: 40%;
+    border: 2px solid white;
+    border-radius: 15px;
     font-size: 20px;
+    font-weight: 600;
+    color: white;
+    font-family: 'Caveat Bold';
+    background-color: transparent;
 }
 
-.cardWrapTodo {
-    background-color: aqua;
+.winWarningTodoBut:hover {
+    box-shadow: 10px 5px 5px white;
+}
+
+.cardWrapTodo-1 {
+    background-color: rgb(103, 255, 141);
+}
+
+.cardWrapTodo-2 {
+    background-color: rgb(250, 121, 222);
 }
 
 .close {
@@ -389,6 +537,81 @@
 
 .cardWrapDone {
     background-color: rgb(95, 95, 214);
+}
+
+.cardInfo {
+    width: 80%;
+    max-width: 700px;
+    min-height: 500px;
+    background-image: url(../images/1614403197_51-p-temnaya-shkola-fon-60.jpg);
+    border-radius: 15px;
+    display: none;
+    flex-direction: column;
+    align-items: center;
+    justify-content: space-around;
+    position: fixed;
+}
+
+.cardInfoOpen {
+    display: flex;
+}
+
+.cardInfoTitle {
+    text-align: center;
+    font-weight: 800;
+    color: white;
+    font-family: 'Caveat Bold';
+    font-size: 50px;
+    margin-top: 0;
+}
+
+.cardInfoDescr {
+    text-align: left;
+    color: white;
+    font-family: 'Caveat Bold';
+    font-size: 30px;
+    width: 80%;
+    margin: 0;
+}
+
+.cardInfoFooter {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    width: 80%;
+}
+
+.cardInfoFooterUser {
+    color: white;
+    font-family: 'Caveat Bold';
+    font-size: 30px;
+}
+
+.cardInfoFooterTime {
+    color: white;
+    font-family: 'Caveat Bold';
+    font-size: 30px;
+    text-align: center;
+}
+
+.cardInfoButWrap {
+    width: 90%;
+    display: flex;
+    justify-content: end;
+    margin-top: 15px;
+}
+
+.cardInfoBut {
+    color: white;
+    font-size: 20px;
+    border: 2px solid white;
+    border-radius: 15px;
+    text-align: center;
+    background-color: transparent;
+}
+
+.cardInfoBut:hover {
+    box-shadow: 3px 3px 3px white;
 }
 
 @font-face {

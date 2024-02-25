@@ -8,8 +8,11 @@ const headerTitle = document.createElement('h3')
 const headerTime = document.createElement('div')
 const main = document.createElement('main')
 const cardWrapTodo = document.createElement('div')
+const cardWrapTodoShadow = document.createElement('div')
 const cardWrapProg = document.createElement('div')
+const cardWrapProgShadow = document.createElement('div')
 const cardWrapDone = document.createElement('div')
+const cardWrapDoneShadow = document.createElement('div')
 const cardTodoDesk = document.createElement('div')
 const cardProgDesk = document.createElement('div')
 const cardDoneDesk = document.createElement('div')
@@ -67,6 +70,9 @@ wrapDoneButShadow.classList = ['wrapDoneButShadow']
 wrapTodoBut.classList = ['wrapButton']
 wrapProgBut.classList = ['wrapButton wrapButtonProg']
 wrapDoneBut.classList = ['wrapButton']
+cardWrapTodoShadow.classList = ['cardWrapTodoShadow']
+cardWrapProgShadow.classList = ['cardWrapProgShadow']
+cardWrapDoneShadow.classList = ['cardWrapDoneShadow']
 
 // создание даты в header
 const getDate = () => {
@@ -87,9 +93,9 @@ root.append(wrapperMain)
 wrapperMain.append(header, main)
 header.append(headerTitle, headerTime)
 main.append(cardWrapTodo, cardWrapProg, cardWrapDone)
-cardWrapTodo.append(wrapTodoTitle, cardTodoDesk, wrapTodoBut)
-cardWrapProg.append(wrapProgTitle, cardProgDesk, wrapProgBut)
-cardWrapDone.append(wrapDoneTitle, cardDoneDesk, wrapDoneBut)
+cardWrapTodo.append(cardWrapTodoShadow, wrapTodoTitle, cardTodoDesk, wrapTodoBut)
+cardWrapProg.append(cardWrapProgShadow, wrapProgTitle, cardProgDesk, wrapProgBut)
+cardWrapDone.append(cardWrapDoneShadow, wrapDoneTitle, cardDoneDesk, wrapDoneBut)
 wrapTodoTitle.append(wrapTodoTitleShadow, cardTitleTodo, cardTitleTodoKol)
 wrapProgTitle.append(wrapProgTitleShadow, cardTitleProg, cardTitleProgKol)
 wrapDoneTitle.append(wrapDoneTitleShadow, cardTitleDone, cardTitleDoneKol)
@@ -137,7 +143,6 @@ wrapTodoBut.addEventListener('click', () => {
             const select = getWin.querySelector('#select')
 
             const cardTodo = ganerateCard()
-            cardTodo.classList.add('cardWrapTodo')
             cardTodo.id = Date.now().toString()
 
             const title = cardTodo.getElementsByClassName('cardOnDeskHeaderTitle')[0]
@@ -171,6 +176,15 @@ wrapTodoBut.addEventListener('click', () => {
             main.classList.remove('transparency')
             getWin.remove()
 
+            const index = todos.findIndex(item => {
+                return item.id === cardTodo.id
+            })
+            if (index % 2 === 0) {
+                cardTodo.classList.add('cardWrapTodo-1')
+            } else {
+                cardTodo.classList.add('cardWrapTodo-2')
+            }
+
             cardTodoDesk.append(cardTodo)
         }
         localStorage.setItem(
@@ -195,9 +209,9 @@ const generateWishCard = () => {
     cardWishTitle.type = 'text'
     cardWishTitle.placeholder = 'Title'
 
-    const cardWishDescript = document.createElement('input')
+    const cardWishDescript = document.createElement('textarea')
     cardWishDescript.classList = ['cardWishDescript']
-    cardWishDescript.type = 'text'
+    // cardWishDescript.type = 'text'
     cardWishDescript.placeholder = 'Description'
 
     const cardWishFooter = document.createElement('div')
@@ -474,7 +488,6 @@ wrapperMain.addEventListener('click', (event) => {
         const cardInProgress = clickBack.closest('.cardWrapProg')
 
         const cardTodoBack = ganerateCard()
-        cardTodoBack.classList.add('cardWrapTodo')
         cardTodoBack.id = cardInProgress.id
 
         const title = cardTodoBack.getElementsByClassName('cardOnDeskHeaderTitle')[0]
@@ -519,6 +532,15 @@ wrapperMain.addEventListener('click', (event) => {
         }
 
         todos.push(data)
+
+        const indexTodo = todos.findIndex(item => {
+            return item.id === cardTodoBack.id
+        })
+        if (indexTodo % 2 === 0) {
+            cardTodoBack.classList.add('cardWrapTodo-1')
+        } else {
+            cardTodoBack.classList.add('cardWrapTodo-2')
+        }
 
         localStorage.setItem(
             KEY_TODO,
@@ -612,7 +634,7 @@ wrapperMain.addEventListener('click', (event) => {
             KEY_DONE,
             JSON.stringify(done)
         )
-        cardTitleDoneKol.innerText = todos.length
+        cardTitleDoneKol.innerText = done.length
     }
 })
 
@@ -652,8 +674,84 @@ wrapDoneBut.addEventListener('click', () => {
             cardWarning.remove()
         }
     })
+})
+
+// разворот карточки для просмотра информации
+wrapperMain.addEventListener('click', (event) => {
+    const clickDescription = event.target
+
+    if (clickDescription.id === 'cardOnDeskMainDescr') {
+
+        header.classList.add('transparency')
+        main.classList.add('transparency')
+
+        const cardWrap = clickDescription.closest('.cardWrapOnDesk')
+        const cardTitle = cardWrap.getElementsByClassName('cardOnDeskHeaderTitle')[0]
+        const title = cardTitle.innerText
+
+        const cardDescription = cardWrap.getElementsByClassName('cardOnDeskMainDescr')[0]
+        const descr = cardDescription.innerText
+
+        const cardUser = cardWrap.getElementsByClassName('cardOnDeskFooterUser')[0]
+        const user = cardUser.innerText
+
+        const cardTime = cardWrap.getElementsByClassName('cardOnDeskFooterTime')[0]
+        const time = cardTime.innerText
+
+        const cardInfo = getCardFromDesk(title, descr, user, time)
+        cardInfo.classList.add('cardInfoOpen')
+
+        cardInfo.addEventListener('click', (event) => {
+            const clickX = event.target
+            if (clickX.innerText === 'X') {
+                header.classList.remove('transparency')
+                main.classList.remove('transparency')
+                cardInfo.remove()
+            }
+        })
+
+        wrapperMain.append(cardInfo)
+    }
+})
+
+// карточка для просмотра информации
+function getCardFromDesk(title, descr, user, time) {
+
+    const cardInfo = document.createElement('div')
+    cardInfo.classList = ['cardInfo']
+
+    const cardInfoButWrap = document.createElement('div')
+    cardInfoButWrap.classList = ['cardInfoButWrap']
+
+    const cardInfoBut = document.createElement('button')
+    cardInfoBut.classList = ['cardInfoBut']
+    cardInfoBut.innerText = 'X'
+
+    const cardInfoTitle = document.createElement('h1')
+    cardInfoTitle.classList = ['cardInfoTitle']
+    cardInfoTitle.innerText = title
+
+    const cardInfoDescr = document.createElement('h4')
+    cardInfoDescr.classList = ['cardInfoDescr']
+    cardInfoDescr.innerText = descr
+
+    const cardInfoFooter = document.createElement('div')
+    cardInfoFooter.classList = ['cardInfoFooter']
+
+    const cardInfoFooterUser = document.createElement('h3')
+    cardInfoFooterUser.classList = ['cardInfoFooterUser']
+    cardInfoFooterUser.innerText = user
+
+    const cardInfoFooterTime = document.createElement('h3')
+    cardInfoFooterTime.classList = ['cardInfoFooterTime']
+    cardInfoFooterTime.innerText = time
+
+    cardInfo.append(cardInfoButWrap, cardInfoTitle, cardInfoDescr, cardInfoFooter)
+    cardInfoButWrap.append(cardInfoBut)
+    cardInfoFooter.append(cardInfoFooterUser, cardInfoFooterTime)
+
+    return cardInfo
 }
-)
 
 // генерация карточки на доске 
 function ganerateCard() {
@@ -663,19 +761,23 @@ function ganerateCard() {
     const cardOnDeskHeader = document.createElement('div')
     cardOnDeskHeader.classList = ['cardOnDeskHeader']
 
-    const cardOnDeskHeaderTitle = document.createElement('div')
-    cardOnDeskHeaderTitle.classList = ['cardOnDeskHeaderTitle']
+    const cardOnDeskHeaderButWrap = document.createElement('div')
+    cardOnDeskHeaderButWrap.classList = ['cardOnDeskHeaderButWrap']
 
     const cardOnDeskHeaderBut1 = document.createElement('button')
     const cardOnDeskHeaderBut2 = document.createElement('button')
     cardOnDeskHeaderBut1.classList = ['cardOnDeskHeaderBut cardOnDeskHeaderBut-1']
     cardOnDeskHeaderBut2.classList = ['cardOnDeskHeaderBut cardOnDeskHeaderBut-2']
 
+    const cardOnDeskHeaderTitle = document.createElement('div')
+    cardOnDeskHeaderTitle.classList = ['cardOnDeskHeaderTitle']
+
     const cardOnDeskMain = document.createElement('div')
     cardOnDeskMain.classList = ['cardOnDeskMain']
 
     const cardOnDeskMainDescr = document.createElement('div')
     cardOnDeskMainDescr.classList = ['cardOnDeskMainDescr']
+    cardOnDeskMainDescr.id = 'cardOnDeskMainDescr'
 
     const cardOnDeskMainBut = document.createElement('button')
     cardOnDeskMainBut.classList = ['cardOnDeskMainBut']
@@ -690,9 +792,9 @@ function ganerateCard() {
     const cardOnDeskFooterTime = document.createElement('div')
     cardOnDeskFooterTime.classList = ['cardOnDeskFooterTime']
 
-    // cardProgDesk.append(cardWrapOnDesk)
     cardWrapOnDesk.append(cardOnDeskHeader, cardOnDeskMain, cardOnDeskFooter)
-    cardOnDeskHeader.append(cardOnDeskHeaderTitle, cardOnDeskHeaderBut1, cardOnDeskHeaderBut2)
+    cardOnDeskHeader.append(cardOnDeskHeaderButWrap, cardOnDeskHeaderTitle)
+    cardOnDeskHeaderButWrap.append(cardOnDeskHeaderBut1, cardOnDeskHeaderBut2)
     cardOnDeskFooter.append(cardOnDeskFooterUser, cardOnDeskFooterTime)
     cardOnDeskMain.append(cardOnDeskMainDescr, cardOnDeskMainBut)
 
@@ -712,8 +814,17 @@ window.addEventListener('DOMContentLoaded', () => {
         const { id, title, description, time, user } = data
 
         const wrap = cardTodo.closest('.cardWrapOnDesk')
-        wrap.classList.add('cardWrapTodo')
         wrap.id = id
+
+        const index = todos.findIndex(item => {
+            return item.id === cardTodo.id
+        })
+        if (index % 2 === 0) {
+            cardTodo.classList.add('cardWrapTodo-1')
+        } else {
+            cardTodo.classList.add('cardWrapTodo-2')
+        }
+
 
         const cardTitle = wrap.getElementsByClassName('cardOnDeskHeaderTitle')[0]
         cardTitle.innerText = title
