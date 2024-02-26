@@ -77,31 +77,31 @@
 .cardWrapTodoShadow {
     position: absolute;
     z-index: 1;
-    background-color: green;
+    background-color: rgb(138, 255, 103);
     width: 100%;
     height: 100%;
     border-radius: 5px;
-    opacity: 0.2;
+    opacity: 0.1;
 }
 
 .cardWrapProgShadow {
     position: absolute;
     z-index: 1;
-    background-color: gray;
+    background-color: rgb(240, 255, 103);
     width: 100%;
     height: 100%;
     border-radius: 5px;
-    opacity: 0.2;
+    opacity: 0.1;
 }
 
 .cardWrapDoneShadow {
     position: absolute;
     z-index: 1;
-    background-color: rgb(95, 95, 214);
+    background-color: rgb(138, 222, 255);
     width: 100%;
     height: 100%;
     border-radius: 5px;
-    opacity: 0.2;
+    opacity: 0.1;
 }
 
 .wrapCardTitle {
@@ -123,31 +123,31 @@
 .wrapTodoTitleShadow {
     position: absolute;
     z-index: 1;
-    background-color: green;
+    background-color: rgb(138, 255, 103);
     width: 100%;
     height: 50px;
     border-radius: 5px;
-    opacity: 0.4;
+    opacity: 0.2;
 }
 
 .wrapProgTitleShadow {
     position: absolute;
     z-index: 1;
-    background-color: gray;
+    background-color: rgb(240, 255, 103);
     width: 100%;
     height: 50px;
     border-radius: 5px;
-    opacity: 0.4;
+    opacity: 0.2;
 }
 
 .wrapDoneTitleShadow {
     position: absolute;
     z-index: 1;
-    background-color: rgb(95, 95, 214);
+    background-color: rgb(138, 222, 255);
     width: 100%;
     height: 50px;
     border-radius: 5px;
-    opacity: 0.4;
+    opacity: 0.2;
 }
 
 .cardTitle {
@@ -203,21 +203,21 @@
 }
 
 .wrapTodoButShadow {
-    background-color: green;
+    background-color: rgb(138, 255, 103);
     width: 100%;
     height: 50px;
     position: absolute;
     z-index: 1;
-    opacity: 0.4;
+    opacity: 0.2;
 }
 
 .wrapDoneButShadow {
-    background-color: rgb(95, 95, 214);
+    background-color: rgb(138, 222, 255);
     width: 100%;
     height: 50px;
     position: absolute;
     z-index: 1;
-    opacity: 0.4;
+    opacity: 0.2;
 }
 
 .wrapBut-Todo {
@@ -359,6 +359,8 @@
     justify-content: center;
     z-index: 2;
     margin: 5px 0 5px 0;
+    border: 0.3px solid black;
+    border-radius: 5px;
 }
 
 .cardOnDeskHeader {
@@ -464,7 +466,7 @@
 }
 
 .cardWrapProg {
-    background-color: gray;
+    background-color: rgb(240, 255, 103);
 }
 
 .winWarningTodo {
@@ -524,19 +526,24 @@
 }
 
 .cardWrapTodo-1 {
-    background-color: rgb(103, 255, 141);
+    background-color: rgb(138, 255, 103);
 }
 
 .cardWrapTodo-2 {
-    background-color: rgb(250, 121, 222);
+    background-color: rgb(255, 103, 103);
 }
+
+.cardWrapTodo-3 {
+    background-color: rgb(255, 171, 103);
+}
+
 
 .close {
     display: none;
 }
 
 .cardWrapDone {
-    background-color: rgb(95, 95, 214);
+    background-color: rgb(138, 222, 255);
 }
 
 .cardInfo {

@@ -144,6 +144,14 @@ wrapTodoBut.addEventListener('click', () => {
 
             const cardTodo = ganerateCard()
             cardTodo.id = Date.now().toString()
+            const lastNumId = Number(cardTodo.id.slice(-1))
+            if (lastNumId % 3 === 0) {
+                cardTodo.classList.add('cardWrapTodo-1')
+            } else if (lastNumId % 2 === 0) {
+                cardTodo.classList.add('cardWrapTodo-2')
+            } else {
+                cardTodo.classList.add('cardWrapTodo-3')
+            }
 
             const title = cardTodo.getElementsByClassName('cardOnDeskHeaderTitle')[0]
             title.innerText = todoTitle.value
@@ -170,20 +178,12 @@ wrapTodoBut.addEventListener('click', () => {
                 time: time.innerText,
                 user: user.innerText,
             }
+
             todos.push(data)
 
             header.classList.remove('transparency')
             main.classList.remove('transparency')
             getWin.remove()
-
-            const index = todos.findIndex(item => {
-                return item.id === cardTodo.id
-            })
-            if (index % 2 === 0) {
-                cardTodo.classList.add('cardWrapTodo-1')
-            } else {
-                cardTodo.classList.add('cardWrapTodo-2')
-            }
 
             cardTodoDesk.append(cardTodo)
         }
@@ -489,6 +489,14 @@ wrapperMain.addEventListener('click', (event) => {
 
         const cardTodoBack = ganerateCard()
         cardTodoBack.id = cardInProgress.id
+        const lastNumId = Number(cardTodoBack.id.slice(-1))
+        if (lastNumId % 3 === 0) {
+            cardTodoBack.classList.add('cardWrapTodo-1')
+        } else if (lastNumId % 2 === 0) {
+            cardTodoBack.classList.add('cardWrapTodo-2')
+        } else {
+            cardTodoBack.classList.add('cardWrapTodo-3')
+        }
 
         const title = cardTodoBack.getElementsByClassName('cardOnDeskHeaderTitle')[0]
         const titleInProg = cardInProgress.getElementsByClassName('cardOnDeskHeaderTitle')[0]
@@ -532,15 +540,6 @@ wrapperMain.addEventListener('click', (event) => {
         }
 
         todos.push(data)
-
-        const indexTodo = todos.findIndex(item => {
-            return item.id === cardTodoBack.id
-        })
-        if (indexTodo % 2 === 0) {
-            cardTodoBack.classList.add('cardWrapTodo-1')
-        } else {
-            cardTodoBack.classList.add('cardWrapTodo-2')
-        }
 
         localStorage.setItem(
             KEY_TODO,
@@ -815,16 +814,14 @@ window.addEventListener('DOMContentLoaded', () => {
 
         const wrap = cardTodo.closest('.cardWrapOnDesk')
         wrap.id = id
-
-        const index = todos.findIndex(item => {
-            return item.id === cardTodo.id
-        })
-        if (index % 2 === 0) {
-            cardTodo.classList.add('cardWrapTodo-1')
+        const lastNumId = Number(wrap.id.slice(-1))
+        if (lastNumId % 3 === 0) {
+            wrap.classList.add('cardWrapTodo-1')
+        } else if (lastNumId % 2 === 0) {
+            wrap.classList.add('cardWrapTodo-2')
         } else {
-            cardTodo.classList.add('cardWrapTodo-2')
+            wrap.classList.add('cardWrapTodo-3')
         }
-
 
         const cardTitle = wrap.getElementsByClassName('cardOnDeskHeaderTitle')[0]
         cardTitle.innerText = title
