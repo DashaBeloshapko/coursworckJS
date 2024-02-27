@@ -86,7 +86,7 @@ setInterval(() => { headerTime.innerText = getDate() }, 1000)
 TodoBut.innerText = 'Add todo'
 DoneBut.innerText = 'Delete All'
 cardTitleTodo.innerText = 'TODO:'
-cardTitleProg.innerText = 'IN PROGRESS:'
+cardTitleProg.innerText = 'IN PROCESS:'
 cardTitleDone.innerText = 'DONE:'
 
 root.append(wrapperMain)
@@ -161,6 +161,7 @@ wrapTodoBut.addEventListener('click', () => {
 
             const headerButDelete = cardTodo.getElementsByClassName('cardOnDeskHeaderBut-2')[0]
             headerButDelete.innerText = 'DELETE'
+            headerButDelete.classList.add('todoDelete')
 
             const description = cardTodo.getElementsByClassName('cardOnDeskMainDescr')[0]
             description.innerText = todoDiscription.value
@@ -211,7 +212,6 @@ const generateWishCard = () => {
 
     const cardWishDescript = document.createElement('textarea')
     cardWishDescript.classList = ['cardWishDescript']
-    // cardWishDescript.type = 'text'
     cardWishDescript.placeholder = 'Description'
 
     const cardWishFooter = document.createElement('div')
@@ -260,7 +260,7 @@ const generateWishCard = () => {
 }
 
 // удаление одной карточки с доски
-wrapperMain.addEventListener('click', (event) => {
+cardWrapTodo.addEventListener('click', (event) => {
     const clickDelete = event.target
 
     if (clickDelete.innerText === 'DELETE') {
@@ -618,13 +618,14 @@ wrapperMain.addEventListener('click', (event) => {
 })
 
 // удаление одной карточки с доски done
-wrapperMain.addEventListener('click', (event) => {
+cardWrapDone.addEventListener('click', (event) => {
     const clickDelete = event.target
 
     if (clickDelete.innerText === 'DELETE') {
         const deleteCard = clickDelete.closest('.cardWrapOnDesk')
         deleteCard.remove()
         const index = done.findIndex(item => {
+            console.log(deleteCard.id)
             return item.id === deleteCard.id
         })
 
@@ -633,6 +634,7 @@ wrapperMain.addEventListener('click', (event) => {
             KEY_DONE,
             JSON.stringify(done)
         )
+        console.log(index)
         cardTitleDoneKol.innerText = done.length
     }
 })

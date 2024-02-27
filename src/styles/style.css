@@ -182,6 +182,15 @@
     background-color: transparent;
 }
 
+.wrapBut-Todo:hover {
+    box-shadow: 5px 5px 5px;
+}
+
+.wrapBut-Done:hover {
+    box-shadow: 5px 5px 5px;
+}
+
+
 .wrapBut-Prog {
     border: none;
 }
@@ -525,7 +534,7 @@
     box-shadow: 10px 5px 5px white;
 }
 
-.cardWrapTodo-1 {
+.cardWrapTodo-3 {
     background-color: rgb(138, 255, 103);
 }
 
@@ -533,7 +542,7 @@
     background-color: rgb(255, 103, 103);
 }
 
-.cardWrapTodo-3 {
+.cardWrapTodo-1 {
     background-color: rgb(255, 171, 103);
 }
 
